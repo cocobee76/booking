@@ -1,0 +1,11 @@
+INSERT INTO room (name) VALUES ('A')
+INSERT INTO room (name) VALUES ('B')
+INSERT INTO room (name) VALUES ('C')
+INSERT INTO room (name) VALUES ('D')
+INSERT INTO room (name) VALUES ('E')
+INSERT INTO room (name) VALUES ('F')
+INSERT INTO room (name) VALUES ('G')
+
+INSERT INTO emp(emp_no, name) VALUES (1, 'vince')
+INSERT INTO emp(emp_no, name) VALUES (2, 'donny')
+INSERT INTO emp(emp_no, name) VALUES (3, 'dan')
