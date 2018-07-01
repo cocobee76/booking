@@ -7,6 +7,7 @@
 - FrontEnd : Mustache Template Engine, JQuery, Moment.js
 
 ###  DB 설계
+- H2 사용(스프링부트 기동시 실행 됨)
 - 주요테이블
 
 RESERVATION: 예약 정보가 저장되는 테이블, 예약날짜(date), 회의실(room_no), 슬롯 번호(slot_no)를 Composit Key로 사용하여 중첩 예약을 차단함. 
@@ -36,16 +37,24 @@ name varchar(20),
 primary key (emp_no)
 ```
 
+### 주요 클래스 및 리소스
+- ReservationController: 컨트롤러 클래스(조회, 예약 생성)
+- ReservationService: 주요 비즈니스 로직
+- ReservationMapper: Entity -> Dto 변환 매퍼
+- reservation.html: 주요 정적 html 파일 
+- reservation.js: FE 스크립트
+
 ## 빌드 및 실행 방법
 
 - 빌드
 ```
-gradle clean compile
+gradlew clean compileJava
+
 ```
 
 - 실행
 ```
-gradle bootRun
+gradlew bootRun
 
 ```
 
