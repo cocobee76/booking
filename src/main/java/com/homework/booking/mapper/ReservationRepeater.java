@@ -2,7 +2,7 @@ package com.homework.booking.mapper;
 
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -17,7 +17,7 @@ public class ReservationRepeater {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DAY_OF_YEAR, 7 * week);
-        return cal.getTime();
+        return new Date(cal.getTimeInMillis());
     }
 
     public static List<Date> getDates(Date startDate, Integer repeatCount) {

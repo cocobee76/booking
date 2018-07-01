@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://kakaopay.recruiter.co.kr/upload/45543/site/myImage/201802/bd66aeb0-4315-4594-8f86-a8fe4761bbee.png">
+    <title>Meeting Room Booking</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-datepicker.min.css"
+          rel="stylesheet"/>
+
+    <style type="text/css">
+        .datepicker td, .datepicker th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        body {
+            overflow: scroll;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        h3 {
+            margin-top: 2rem;
+        }
+
+        .row {
+            margin-bottom: 1rem;
+        }
+
+        .row .row {
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        [class*="col-"] {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: rgba(86, 61, 124, .15);
+            border: 1px solid rgba(86, 61, 124, .2);
+        }
+
+        hr {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        th {
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+
+<body>
+<div class="container">
+
+    <h1>Meeting Room Reservation</h1>
+    <hr class="mb-4">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#_modal">Make a Reservation!</button>
+
+    <hr class="mb-4">
+    <div class="row">
+        <!--        <div class="col-md-4 mb-3">
+                    <label for="_emp">User</label>
+                    <select class="custom-select d-block w-100" id="_emp" required="">
+                    </select>
+                </div>-->
+        <div class="col-md-4 mb-3">
+            <label for="datepicker">Pick a date</label>
+            <input type="text" class="form-control" id="datepicker" placeholder=""
+                   value="" required="">
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead id="_thead" class="thead-dark">
+            </thead>
+            <tbody id="_tbody">
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+
+
+<!-- modal -->
+<div class="modal fade" id="_modal" tabindex="-1" role="dialog" aria-labelledby="_modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="_modalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="_emp">User</label>
+                        <select class="custom-select d-block w-100" id="_emp" required="">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="text" class="form-control" id="date" placeholder=""
+                               value="" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="_room">Room</label>
+                        <select class="custom-select d-block w-100" id="_room" required="">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="_emp">Time</label>
+                        <select class="custom-select d-block w-100" id="_slot" required="">
+                        </select>
+                    </div>
+                    <div class="form-group form-check">
+                        <div class="row">
+                            <div class="col-md-3" style="background-color: #FFFFFF;border: 1px solid #FFFFFF;">
+                                <input type="checkbox" class="form-check-input" id="_check">
+                                <label class="form-check-label" for="_check">반복예약</label>
+                            </div>
+                            <div class="col-md-3" style="background-color: #FFFFFF;border: 1px solid #FFFFFF;">
+                                <input type="text" class="form-control" id="_repeatCount" placeholder="Input Count"
+                                       value="0" required="" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="_submit">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal -->
+</body>
+
+<!-- Bootstrap and necessary plugins -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/moment.js"></script>
+
+<script src="/reservation/reservation.js"></script>
+
+<script type="text/javascript">
+    reservation.init();
+</script>
+</body>
+</html>

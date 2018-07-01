@@ -17,6 +17,9 @@ spring:
         show_sql: true
         use_sql_comments: true
         format_sql: true
+  devtools:
+    livereload:
+      enabled: true
 
 ###
 #   H2 Settings

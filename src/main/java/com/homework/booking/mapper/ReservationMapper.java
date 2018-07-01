@@ -1,10 +1,11 @@
 package com.homework.booking.mapper;
 
+import com.homework.booking.dto.ReservationDailyDto;
 import com.homework.booking.dto.ReservationDto;
 import com.homework.booking.entity.Reservation;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -15,16 +16,14 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class ReservationMapper {
 
-    public List<Reservation> map(ReservationDto dto, List<Date> dates) {
+    public ReservationDailyDto map(List<Reservation> reservations, Date date) {
 
-        return dates.stream()
-                .map(date -> {
-                    Reservation reservation = new Reservation();
-                    reservation.setDate(date);
-                    reservation.setSlotNo(dto.getSlotNo());
-                    reservation.setRoomNo(dto.getRoomNo());
-                    reservation.setEmpNo(dto.getEmpNo());
-                    return reservation;
-                }).collect(toList());
+        return ReservationDailyDto.builder()
+                .date(date)
+                .reservations(
+                        reservations.stream()
+                                .map(reservation -> ReservationDto.builder().slotNo(reservation.getSlotNo()).roomNo(reservation.getRoomNo()).empNo(reservation.getEmpNo()).build())
+                                .collect(toList()))
+                .build();
     }
 }

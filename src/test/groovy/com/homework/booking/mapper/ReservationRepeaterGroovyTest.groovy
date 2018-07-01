@@ -17,7 +17,7 @@ class ReservationRepeaterGroovyTest extends Specification {
 
         given:
         when:
-        def res = ReservationRepeater.getDates(FORMAT.parse(DATE), 5)
+        def res = ReservationRepeater.getDates(new java.sql.Date(FORMAT.parse(DATE).getTime()), 5)
         println(res)
         then:
 

@@ -1,51 +1,67 @@
 package com.homework.booking.controller;
 
-import com.homework.booking.dto.ReservationDto;
-import com.homework.booking.entity.Reservation;
-import com.homework.booking.mapper.ReservationMapper;
+import com.homework.booking.dto.EmpDto;
+import com.homework.booking.dto.ReservationDailyDto;
+import com.homework.booking.dto.ReservationParamDto;
+import com.homework.booking.dto.RoomDto;
+import com.homework.booking.service.EmpService;
 import com.homework.booking.service.ReservationService;
-import lombok.extern.slf4j.Slf4j;
+import com.homework.booking.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created By Chae Chul Byung
  */
-@RestController
-@Slf4j
-@RequestMapping("/")
+@Controller
 public class ReservationController {
 
     private final ReservationService reservationService;
 
-    private final ReservationMapper reservationMapper;
+    private final RoomService roomService;
+
+    private final EmpService empService;
 
     @Autowired
-    public ReservationController(ReservationService reservationService, ReservationMapper reservationMapper) {
+    public ReservationController(ReservationService reservationService, RoomService roomService, EmpService empService) {
         this.reservationService = reservationService;
-        this.reservationMapper = reservationMapper;
+        this.roomService = roomService;
+        this.empService = empService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Reservation> findAll() {
-        return reservationService.findAllReservation();
+    @RequestMapping(value = "/")
+    public String index(Model model) {
+        return "reservation";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String crate() {
+    @RequestMapping(value = "/occupied", method = RequestMethod.GET)
+    @ResponseBody
+    public ReservationDailyDto findOccupied(
+            @RequestParam(value = "date", required = false) String date
+    ) {
+        return reservationService.findOccupied(date);
+    }
 
-        ReservationDto dto = new ReservationDto();
-        dto.setStartDate(new Date());
-        dto.setRoomNo(10);
-        dto.setEmpNo(111);
-        dto.setSlotNo(9);
-        dto.setRepeatCount(10);
+    @RequestMapping(value = "/emp", method = RequestMethod.GET)
+    @ResponseBody
+    public List<EmpDto> findAllEmps() {
+        return empService.getAllEmpDtos();
+    }
 
-        reservationService.saveAll(dto);
+    @RequestMapping(value = "/room", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RoomDto> findAllRooms() {
+        return roomService.getAllRoomDtos();
+    }
 
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public String crate(@ModelAttribute ReservationParamDto reservationParamDto) {
+        reservationService.saveAll(reservationParamDto);
         return "DONE";
     }
 }
